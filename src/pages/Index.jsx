@@ -1,8 +1,8 @@
 import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import About from "@/components/About";
-import Solution from "@/components/Solution";
-import Impact from "@/components/Impact";
+import ModernHero from "@/components/ModernHero";
+import EnhancedAbout from "@/components/EnhancedAbout";
+import Interactive3DSolution from "@/components/Interactive3DSolution";
+import ModernImpact from "@/components/ModernImpact";
 import Funding from "@/components/Funding";
 import Donate from "@/components/Donate";
 import Footer from "@/components/Footer";
@@ -11,10 +11,10 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <Hero />
-      <About />
-      <Solution />
-      <Impact />
+      <ModernHero />
+      <EnhancedAbout />
+      <Interactive3DSolution />
+      <ModernImpact />
       <Funding />
       <Donate />
       <Footer />
