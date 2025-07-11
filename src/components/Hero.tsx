@@ -3,7 +3,7 @@ import { ArrowRight, Shield, Zap, Heart } from "lucide-react";
 import heroImage from "@/assets/hero-image.jpg";
 
 const Hero = () => {
-  const scrollToSection = (sectionId) => {
+  const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
