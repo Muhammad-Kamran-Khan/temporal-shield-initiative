@@ -8,7 +8,7 @@ import { useState } from "react";
 import { DollarSign, CreditCard, Building, Mail, Phone, MapPin } from "lucide-react";
 
 const Donate = () => {
-  const [selectedAmount, setSelectedAmount] = useState(null);
+  const [selectedAmount, setSelectedAmount] = useState<number | null>(null);
   const [customAmount, setCustomAmount] = useState("");
   const [donorInfo, setDonorInfo] = useState({
     name: "",
@@ -19,17 +19,17 @@ const Donate = () => {
 
   const suggestedAmounts = [50, 100, 250, 500, 1000, 5000];
 
-  const handleAmountSelect = (amount) => {
+  const handleAmountSelect = (amount: number) => {
     setSelectedAmount(amount);
     setCustomAmount("");
   };
 
-  const handleCustomAmount = (value) => {
+  const handleCustomAmount = (value: string) => {
     setCustomAmount(value);
     setSelectedAmount(null);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle donation submission
     console.log("Donation submitted:", {
