@@ -2,7 +2,7 @@ import { Shield, Mail, Phone, MapPin, Twitter, Linkedin, Github } from "lucide-r
 import { Button } from "@/components/ui/button";
 
 const Footer = () => {
-  const scrollToSection = (sectionId: string) => {
+  const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
