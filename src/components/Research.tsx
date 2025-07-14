@@ -9,56 +9,56 @@ const Research = () => {
   const researchAreas = [
     {
       title: "Nanotechnology Drug Delivery",
-      progress: 78,
-      status: "In Progress",
-      description: "Advanced nanocarriers for targeted radiation protection",
-      publications: 12,
-      patents: 3
+      progress: 25,
+      status: "Early Stage",
+      description: "Developing nanocarriers for targeted radiation protection",
+      publications: 2,
+      patents: 0
     },
     {
-      title: "Synthetic Biology Applications",
-      progress: 65,
-      status: "Phase II",
-      description: "Engineered biological systems for enhanced protection",
-      publications: 8,
-      patents: 2
+      title: "Synthetic Biology Applications", 
+      progress: 15,
+      status: "Concept Phase",
+      description: "Exploring engineered biological systems for protection",
+      publications: 1,
+      patents: 0
     },
     {
       title: "Temporal Pharmacology",
-      progress: 92,
-      status: "Near Completion",
-      description: "Time-phased drug release mechanisms",
-      publications: 15,
-      patents: 5
+      progress: 35,
+      status: "Proof of Concept",
+      description: "Time-phased drug release mechanisms research",
+      publications: 2,
+      patents: 1
     },
     {
-      title: "Clinical Safety Trials",
-      progress: 45,
-      status: "Phase I",
-      description: "Human safety and efficacy testing",
-      publications: 6,
-      patents: 1
+      title: "Pre-Clinical Safety Studies",
+      progress: 20,
+      status: "Initial Testing",
+      description: "Safety evaluation in laboratory models",
+      publications: 1,
+      patents: 0
     }
   ];
 
   const facilities = [
     {
-      name: "Radiation Biology Laboratory",
-      equipment: ["Linear Accelerator", "Cell Culture Facilities", "Flow Cytometry", "Confocal Microscopy"],
+      name: "University Research Laboratory",
+      equipment: ["Basic Cell Culture", "Spectrophotometry", "Small Animal Models", "Data Analysis Software"],
       image: researchLab
     },
     {
-      name: "Data Analysis Center",
-      equipment: ["High-Performance Computing", "Bioinformatics Workstations", "Statistical Software", "AI/ML Platforms"],
+      name: "Computational Research Center",
+      equipment: ["Molecular Modeling", "Statistical Analysis", "Literature Database", "Collaboration Platform"],
       image: dataAnalysisLab
     }
   ];
 
   const achievements = [
-    { icon: Award, label: "Peer-Reviewed Publications", value: "41" },
-    { icon: FileBarChart, label: "Patent Applications", value: "11" },
-    { icon: FlaskConical, label: "Active Experiments", value: "156" },
-    { icon: Microscope, label: "Research Collaborations", value: "8" }
+    { icon: Award, label: "Conference Presentations", value: "6" },
+    { icon: FileBarChart, label: "Patent Application", value: "1" },
+    { icon: FlaskConical, label: "Active Experiments", value: "12" },
+    { icon: Microscope, label: "Research Collaborations", value: "3" }
   ];
 
   return (
@@ -71,17 +71,17 @@ const Research = () => {
               Scientific Research
             </Badge>
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              <span className="bg-gradient-hero bg-clip-text text-transparent">Evidence-Based</span> Development
+              <span className="bg-gradient-hero bg-clip-text text-transparent">Early-Stage</span> Research Development
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Our research is grounded in rigorous scientific methodology with peer-reviewed 
-              publications and ongoing clinical trials validating our approach.
+              Our preliminary research establishes the scientific foundation for breakthrough 
+              radiation protection. Funding will accelerate development and enable clinical trials.
             </p>
           </div>
 
           {/* Research Progress */}
           <div className="mb-16">
-            <h3 className="text-2xl font-bold text-center mb-8">Current Research Areas</h3>
+            <h3 className="text-2xl font-bold text-center mb-8">Current Research Progress</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {researchAreas.map((area, index) => (
                 <Card key={index} className="bg-gradient-card border-border/50 shadow-soft">
@@ -89,13 +89,13 @@ const Research = () => {
                     <div className="flex justify-between items-start mb-4">
                       <div>
                         <h4 className="text-lg font-semibold mb-2">{area.title}</h4>
-                        <Badge variant={area.status === "Near Completion" ? "default" : "secondary"}>
+                        <Badge variant={area.status === "Proof of Concept" ? "default" : "secondary"}>
                           {area.status}
                         </Badge>
                       </div>
                       <div className="text-right text-sm text-muted-foreground">
-                        <div>{area.publications} Publications</div>
-                        <div>{area.patents} Patents</div>
+                        <div>{area.publications} Study{area.publications !== 1 ? 'ies' : 'y'}</div>
+                        <div>{area.patents} Patent{area.patents !== 1 ? 's' : ''}</div>
                       </div>
                     </div>
                     <p className="text-muted-foreground mb-4">{area.description}</p>
@@ -114,7 +114,7 @@ const Research = () => {
 
           {/* Research Facilities */}
           <div className="mb-16">
-            <h3 className="text-2xl font-bold text-center mb-8">Research Facilities</h3>
+            <h3 className="text-2xl font-bold text-center mb-8">Available Research Infrastructure</h3>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {facilities.map((facility, index) => (
                 <Card key={index} className="bg-gradient-card border-border/50 shadow-medium overflow-hidden">
@@ -148,7 +148,7 @@ const Research = () => {
           {/* Research Achievements */}
           <Card className="bg-gradient-card border-primary/20 shadow-medium">
             <CardContent className="p-8">
-              <h3 className="text-2xl font-bold text-center mb-8">Research Achievements</h3>
+              <h3 className="text-2xl font-bold text-center mb-8">Research Milestones</h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 {achievements.map((achievement, index) => (
                   <div key={index} className="text-center">

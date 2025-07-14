@@ -6,63 +6,36 @@ import { ExternalLink, BookOpen, Quote } from "lucide-react";
 const Publications = () => {
   const publications = [
     {
-      title: "Nanotechnology-Enhanced Radioprotective Pharmaceuticals: A Comprehensive Review",
+      title: "Preliminary Studies on Multi-Phase Radiation Protection: A Novel Approach",
       authors: "Chen, S., Rodriguez, M., Watson, E.",
-      journal: "Nature Biotechnology",
+      journal: "Radiation Research Society Conference Proceedings",
       year: "2024",
-      impact: "9.2",
-      citations: 47,
-      type: "Review",
-      abstract: "This comprehensive review examines the latest advances in nanotechnology applications for radiation protection, highlighting breakthrough delivery mechanisms and therapeutic efficacy."
+      type: "Conference Abstract",
+      abstract: "Initial proof-of-concept studies demonstrate the feasibility of a three-phase pharmaceutical approach to radiation protection, showing promising results in cellular studies."
     },
     {
-      title: "Temporal Pharmacology in Radiation Protection: Pre-, During, and Post-Exposure Strategies",
-      authors: "Rodriguez, M., Chen, S., Parker, J.",
-      journal: "Science Translational Medicine",
+      title: "Nanotechnology Applications in Radioprotective Drug Design: Literature Review",
+      authors: "Rodriguez, M., Chen, S.",
+      journal: "Biomedical Research Quarterly",
       year: "2024",
-      impact: "17.1",
-      citations: 62,
-      type: "Original Research",
-      abstract: "We present the first temporal pharmacological approach to radiation protection, demonstrating enhanced efficacy through time-coordinated drug delivery systems."
+      type: "Review Article",
+      abstract: "Comprehensive analysis of current nanotechnology approaches in radiation protection, identifying gaps and opportunities for innovative drug delivery systems."
     },
     {
-      title: "Synthetic Biology Applications in Radioprotective Drug Development",
-      authors: "Watson, E., Chen, S., Rodriguez, M.",
-      journal: "Cell",
+      title: "Pre-Clinical Safety Assessment of Novel Radioprotective Compounds",
+      authors: "Watson, E., Chen, S., Thompson, L.",
+      journal: "Toxicology Research Letters",
       year: "2023",
-      impact: "38.6",
-      citations: 89,
-      type: "Original Research",
-      abstract: "Novel synthetic biology techniques enable the development of engineered cellular systems for enhanced radioprotection with reduced toxicity profiles."
-    },
-    {
-      title: "Safety and Efficacy of Multi-Phase Radiation Protection in Clinical Trials",
-      authors: "Chen, S., Watson, E., Thompson, L.",
-      journal: "The Lancet",
-      year: "2023",
-      impact: "79.3",
-      citations: 134,
-      type: "Clinical Trial",
-      abstract: "Phase I clinical trial results demonstrate the safety and preliminary efficacy of our three-phase radioprotective pharmaceutical system."
-    },
-    {
-      title: "Quantum Dot-Mediated Drug Delivery for Real-Time Radiation Protection",
-      authors: "Rodriguez, M., Parker, J., Watson, E.",
-      journal: "ACS Nano",
-      year: "2023",
-      impact: "15.8",
-      citations: 76,
-      type: "Technical Report",
-      abstract: "Advanced quantum dot systems enable responsive drug release triggered by radiation exposure, providing real-time protection mechanisms."
+      type: "Preliminary Study",
+      abstract: "Initial safety evaluation of radioprotective compound formulations in cellular and small animal models, establishing foundation for future clinical development."
     }
   ];
 
   const getTypeColor = (type: string) => {
     switch (type) {
-      case "Original Research": return "bg-blue-500/10 text-blue-600 border-blue-500/20";
-      case "Review": return "bg-green-500/10 text-green-600 border-green-500/20";
-      case "Clinical Trial": return "bg-purple-500/10 text-purple-600 border-purple-500/20";
-      case "Technical Report": return "bg-orange-500/10 text-orange-600 border-orange-500/20";
+      case "Preliminary Study": return "bg-blue-500/10 text-blue-600 border-blue-500/20";
+      case "Review Article": return "bg-green-500/10 text-green-600 border-green-500/20";
+      case "Conference Abstract": return "bg-purple-500/10 text-purple-600 border-purple-500/20";
       default: return "bg-gray-500/10 text-gray-600 border-gray-500/20";
     }
   };
@@ -77,11 +50,11 @@ const Publications = () => {
               Scientific Publications
             </Badge>
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              <span className="bg-gradient-hero bg-clip-text text-transparent">Peer-Reviewed</span> Research
+              <span className="bg-gradient-hero bg-clip-text text-transparent">Preliminary</span> Research & Publications
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Our research is published in top-tier scientific journals, 
-              contributing to the global knowledge base in radiation protection and pharmaceutical development.
+              Our early-stage research establishes the scientific foundation for our three-phase 
+              radiation protection system. These preliminary studies support our funding proposal.
             </p>
           </div>
 
@@ -100,8 +73,11 @@ const Publications = () => {
                           </Badge>
                         </div>
                         <div className="text-right text-sm text-muted-foreground">
-                          <div>Impact Factor: {pub.impact}</div>
-                          <div>{pub.citations} Citations</div>
+                          <div className="text-xs">
+                            {pub.type === "Conference Abstract" ? "Presented 2024" :
+                             pub.type === "Review Article" ? "Under Review" :
+                             "Pre-Clinical Stage"}
+                          </div>
                         </div>
                       </div>
                       
@@ -137,13 +113,13 @@ const Publications = () => {
           <div className="text-center mt-16">
             <Card className="bg-gradient-card border-primary/20 shadow-medium max-w-2xl mx-auto">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold mb-4">Access Full Research Database</h3>
+                <h3 className="text-2xl font-bold mb-4">Research Database & Protocols</h3>
                 <p className="text-muted-foreground mb-6">
-                  Explore our complete collection of publications, datasets, and research protocols. 
-                  All research is conducted under rigorous peer review and ethical guidelines.
+                  Access our preliminary research data, experimental protocols, and methodology. 
+                  All research follows institutional review board guidelines and ethical standards.
                 </p>
                 <Button variant="cta" size="lg" className="group">
-                  View Research Portal
+                  View Research Protocols
                   <ExternalLink className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </CardContent>
