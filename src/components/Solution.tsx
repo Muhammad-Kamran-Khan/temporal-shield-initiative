@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Shield, Zap, RefreshCw, Clock, Dna, Atom } from "lucide-react";
 import pillsImage from "@/assets/pills-diagram.jpg";
+import pharmaResearch from "@/assets/pharma-research.jpg";
 
 const Solution = () => {
   const pills = [
@@ -92,13 +93,20 @@ const Solution = () => {
             </p>
           </div>
 
-          {/* Pills Overview Image */}
+          {/* Research Laboratory Image */}
           <div className="text-center mb-16">
-            <img 
-              src={pillsImage} 
-              alt="Three-phase pill system diagram"
-              className="mx-auto rounded-2xl shadow-strong max-w-full h-auto"
-            />
+            <div className="relative">
+              <img 
+                src={pharmaResearch} 
+                alt="Pharmaceutical research laboratory"
+                className="mx-auto rounded-2xl shadow-strong max-w-full h-auto"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent rounded-2xl" />
+              <div className="absolute bottom-6 left-6 right-6 text-white">
+                <h3 className="text-2xl font-bold mb-2">Advanced Pharmaceutical Development</h3>
+                <p className="text-white/90">State-of-the-art laboratory facilities for radiation protection research</p>
+              </div>
+            </div>
           </div>
 
           {/* Pills Detail Cards */}

@@ -25,12 +25,18 @@ const Header = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-6">
             <button 
               onClick={() => scrollToSection('about')}
               className="text-foreground hover:text-primary transition-colors"
             >
               About
+            </button>
+            <button 
+              onClick={() => scrollToSection('research')}
+              className="text-foreground hover:text-primary transition-colors"
+            >
+              Research
             </button>
             <button 
               onClick={() => scrollToSection('solution')}
@@ -39,10 +45,16 @@ const Header = () => {
               Solution
             </button>
             <button 
-              onClick={() => scrollToSection('impact')}
+              onClick={() => scrollToSection('publications')}
               className="text-foreground hover:text-primary transition-colors"
             >
-              Impact
+              Publications
+            </button>
+            <button 
+              onClick={() => scrollToSection('team')}
+              className="text-foreground hover:text-primary transition-colors"
+            >
+              Team
             </button>
             <button 
               onClick={() => scrollToSection('funding')}
@@ -81,16 +93,28 @@ const Header = () => {
                 About
               </button>
               <button 
+                onClick={() => scrollToSection('research')}
+                className="text-left text-foreground hover:text-primary transition-colors"
+              >
+                Research
+              </button>
+              <button 
                 onClick={() => scrollToSection('solution')}
                 className="text-left text-foreground hover:text-primary transition-colors"
               >
                 Solution
               </button>
               <button 
-                onClick={() => scrollToSection('impact')}
+                onClick={() => scrollToSection('publications')}
                 className="text-left text-foreground hover:text-primary transition-colors"
               >
-                Impact
+                Publications
+              </button>
+              <button 
+                onClick={() => scrollToSection('team')}
+                className="text-left text-foreground hover:text-primary transition-colors"
+              >
+                Team
               </button>
               <button 
                 onClick={() => scrollToSection('funding')}

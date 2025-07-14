@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Microscope, Users, GraduationCap, Mail, Linkedin } from "lucide-react";
+import teamMeeting from "@/assets/team-meeting.jpg";
 
 const Team = () => {
   const researchers = [
@@ -174,6 +175,27 @@ const Team = () => {
                   type="coordinator"
                 />
               ))}
+            </div>
+          </div>
+
+          {/* Research Collaboration */}
+          <div className="mt-16">
+            <div className="relative rounded-2xl overflow-hidden mb-8">
+              <img 
+                src={teamMeeting} 
+                alt="Research team collaboration"
+                className="w-full h-64 object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-background/90 to-background/60" />
+              <div className="absolute inset-0 flex items-center">
+                <div className="p-8 max-w-2xl">
+                  <h3 className="text-3xl font-bold text-white mb-4">Collaborative Research Excellence</h3>
+                  <p className="text-white/90 text-lg">
+                    Our multidisciplinary approach combines expertise from radiation biology, 
+                    pharmaceutical sciences, and clinical research to deliver breakthrough solutions.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
