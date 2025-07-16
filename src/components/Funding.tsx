@@ -3,8 +3,18 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { DollarSign, Users, Target, TrendingUp, Heart, Building, User } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 
 const Funding = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [animatedRaised, setAnimatedRaised] = useState(0);
+  const [animatedGoal, setAnimatedGoal] = useState(0);
+  const [animatedDonors, setAnimatedDonors] = useState(0);
+  const [animatedDaysLeft, setAnimatedDaysLeft] = useState(0);
+  const [animatedProgress, setAnimatedProgress] = useState(0);
+  const [animatedPercentages, setAnimatedPercentages] = useState<number[]>([]);
+  const sectionRef = useRef<HTMLElement>(null);
+
   const fundingBreakdown = [
     {
       category: "Research & Development",
@@ -89,6 +99,66 @@ const Funding = () => {
 
   const progressPercentage = (currentFunding.raised / currentFunding.goal) * 100;
 
+  // Animation functions
+  const animateValue = (start: number, end: number, duration: number, setValue: (value: number) => void) => {
+    const startTime = Date.now();
+    const animate = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+      const current = start + (end - start) * easeOutQuart;
+      setValue(Math.round(current));
+      
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+    animate();
+  };
+
+  // Intersection Observer to trigger animations
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !isVisible) {
+            setIsVisible(true);
+            
+            // Animate main funding numbers
+            animateValue(0, currentFunding.raised, 2000, setAnimatedRaised);
+            animateValue(0, currentFunding.goal, 2000, setAnimatedGoal);
+            animateValue(0, currentFunding.donors, 1500, setAnimatedDonors);
+            animateValue(0, currentFunding.daysLeft, 1500, setAnimatedDaysLeft);
+            animateValue(0, progressPercentage, 2500, setAnimatedProgress);
+            
+            // Animate breakdown percentages
+            const percentages = fundingBreakdown.map(item => item.percentage);
+            setAnimatedPercentages(new Array(percentages.length).fill(0));
+            
+            percentages.forEach((percentage, index) => {
+              setTimeout(() => {
+                animateValue(0, percentage, 1500, (value) => {
+                  setAnimatedPercentages(prev => {
+                    const newArray = [...prev];
+                    newArray[index] = value;
+                    return newArray;
+                  });
+                });
+              }, index * 200);
+            });
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [isVisible, currentFunding.raised, currentFunding.goal, currentFunding.donors, currentFunding.daysLeft, progressPercentage, fundingBreakdown]);
+
   const scrollToDonate = () => {
     const element = document.getElementById('donate');
     if (element) {
@@ -97,7 +167,7 @@ const Funding = () => {
   };
 
   return (
-    <section id="funding" className="py-20 bg-gradient-section">
+    <section ref={sectionRef} id="funding" className="py-20 bg-gradient-section">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
@@ -120,33 +190,33 @@ const Funding = () => {
               <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
                 <div className="text-center">
                   <div className="text-3xl font-bold text-primary mb-2">
-                    ${(currentFunding.raised / 1000).toFixed(0)}K
+                    ${(animatedRaised / 1000).toFixed(0)}K
                   </div>
                   <div className="text-muted-foreground">Raised</div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-primary mb-2">
-                    ${(currentFunding.goal / 1000000).toFixed(1)}M
+                    ${(animatedGoal / 1000000).toFixed(1)}M
                   </div>
                   <div className="text-muted-foreground">Goal</div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-primary mb-2">
-                    {currentFunding.donors}
+                    {animatedDonors}
                   </div>
                   <div className="text-muted-foreground">Donors</div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-primary mb-2">
-                    {currentFunding.daysLeft}
+                    {animatedDaysLeft}
                   </div>
                   <div className="text-muted-foreground">Days Left</div>
                 </div>
               </div>
-              <Progress value={progressPercentage} className="h-4 mb-4" />
+              <Progress value={animatedProgress} className="h-4 mb-4" />
               <div className="text-center">
                 <p className="text-muted-foreground mb-4">
-                  {progressPercentage.toFixed(1)}% of goal reached
+                  {animatedProgress.toFixed(1)}% of goal reached
                 </p>
                 <Button variant="cta" size="lg" onClick={scrollToDonate}>
                   Contribute Now
@@ -170,7 +240,7 @@ const Funding = () => {
                       <div className="text-xl font-bold text-primary">{item.amount}</div>
                     </div>
                     <p className="text-muted-foreground text-sm mb-3">{item.description}</p>
-                    <Progress value={item.percentage} className="h-2" />
+                    <Progress value={animatedPercentages[index] || 0} className="h-2" />
                   </CardContent>
                 </Card>
               ))}
